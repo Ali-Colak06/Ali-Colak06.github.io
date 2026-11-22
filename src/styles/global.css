@@ -116,7 +116,7 @@
   .site-controls::before { content: ''; position: absolute; left: 0; height: 15px; width: 1px; background: var(--control-divider); }
   .site-controls .control { font-size: 15px; }
   .site-controls .theme-toggle { font-size: 21px; }
-  .site-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-block: 40px 44px; font-size: 15px; color: var(--muted); }
+  .site-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-block: 40px 44px; font-size: 15px; color: var(--secondary); }
   .site-footer .footer-credit { margin-top: 6px; }
   .site-footer .copyright { margin-top: 0; }
   .hero { padding-block: 128px 116px; }
@@ -146,7 +146,7 @@
   .education-entry { display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 24px; align-items: baseline; padding-block: 24px; }
   .education-entry h3 { font-size: 19px; }
   .site-content .education-program { margin-top: 6px; }
-  .site-content .education-dates { margin-top: 0; font-size: 16px; text-align: right; color: var(--muted); }
+  .site-content .education-dates { margin-top: 0; font-size: 16px; text-align: right; color: var(--secondary); }
   .contact-section { padding-block: 96px; }
   .site-content .contact-list { margin-top: 40px; }
   .contact-row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 24px; padding-block: 20px; }

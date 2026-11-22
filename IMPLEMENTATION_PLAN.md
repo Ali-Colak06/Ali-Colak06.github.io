@@ -16,8 +16,8 @@ authorized M5 publish webhook. Configuration and filter tests are ready. The
 owner supplied the remote GitHub credential; the header name was corrected and
 the webhook enabled without exposing its value. Actual Publish delivery,
 successful automatic workflow and live English Test1 output are verified; M5
-integration and test-text restoration are verified. M6 final
-end-to-end acceptance is the next milestone.
+integration and test-text restoration are verified. M6 final checks are locally
+complete; the owner-approved contrast correction awaits final live verification.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -127,6 +127,54 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 - Required content access must throw on missing content; no hidden EN fallback.
 
 ## Validation record
+
+### Deployment-roadmap M6 — 2026-11-22 (final publication verification pending)
+
+- Final root check: 29 files, zero errors/warnings/hints; 15 tests passed.
+  Studio type check, five real-validator tests and real-project build passed.
+  Both dependency trees passed npm ls integrity checks. No dependency change.
+- Real-content Astro build and route verification passed: seven HTML pages,
+  49 local links/assets, no browser CMS calls or framework hydration.
+- Live browser: 84 cases across six routes, light/dark themes, widths
+  320/390/768/1023/1024/1240/1440. Checked metadata, one h1/main/footer, active
+  nav, sticky header, 44px controls, equivalent-language routes, placeholder,
+  absence of Test1, no overflow and no page errors. Theme persistence, nested
+  HTTP 404 with initial EN and TR selection passed.
+- Keyboard-visible 2px focus, reduced-motion transition removal, JS-disabled
+  navigation/English 404/Home link and blocked-storage theme switching passed.
+  These checks do not establish complete WCAG or all-browser conformance.
+- Missing-content failure verified through an actual Astro build in an isolated
+  temporary source copy: injected test client returns a missing contactPage;
+  build exits 1 with `Missing or invalid required content: contactPage`.
+  No live document was unpublished/deleted or edited. Network-failure and
+  missing-translation behavior also remain covered by passing content tests.
+  The isolated copy used a dependency junction and required normal-user access
+  outside the sandbox; no test override or fixture entered production sources.
+- Deployment job remains needs:build with default success gating; the isolated
+  failure cannot upload/deploy an artifact. Existing live deployment stayed up.
+  No deliberately broken production workflow was run.
+- Credential-pattern scan passed across tracked source and both build outputs;
+  no real photo present, env/dependency/build folders ignored. This is a focused
+  pattern scan, not a proof of absence of every possible secret.
+- Studio hosted access was confirmed by the owner in M4; public Pages HTTPS,
+  Actions source, main-only environment policy and successful code/manual/publish
+  runs were verified in M3–M5. Real Publish/edit/restore runs are linked above.
+- Light desktop footer and education-date text measured 3.15:1. Owner reviewed
+  before/after preview and approved using existing secondary #6B6E73, 4.91:1
+  on #FBFAF9, rather than prior #8B8E93. Only those desktop selectors changed;
+  dark/mobile appearance preserved. DESIGN.md records the decision. Twelve
+  local regression cases (EN/TR, light/dark, 390/1024/1240) passed and final
+  desktop light About screenshot reviewed. Final live regression is pending.
+- README now contains daily editorial/code/schema workflows, manual recovery,
+  token renewal and build-failure troubleshooting. PROJECT_SPEC status updated
+  from pre-implementation to deployed V0, preserving owner photo/education exceptions.
+- Known limitations retained: 13 moderate Sanity CLI-chain audit entries per
+  tree (no high/critical at last audit), non-fatal Vite import warning, GitHub
+  official Pages action runtime deprecation annotations, optional Studio login
+  service automation-script failures. Owner's real Studio login succeeded.
+  No claim of a screen-reader audit or full WCAG certification.
+
+Changed: global.css, DESIGN.md, PROJECT_SPEC.md, README.md and this plan.
 
 ### Deployment-roadmap M5 — 2026-11-22 (integration verified)
 
@@ -571,7 +619,7 @@ remediation are complete. M2 Pages workflow is now locally implemented and
 verified. M3 GitHub publication and M4 hosted Sanity Studio are complete. Next:
 M5 Sanity publish webhook is configured, enabled and verified through a real
 published Test1 edit, successful live update and verified restoration. Proceed
-to M6 final end-to-end acceptance. Retain the
+to the final live verification of the approved M6 contrast correction. Retain the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
 The owner previously confirmed the 404 works. Whole-site accessibility/contrast

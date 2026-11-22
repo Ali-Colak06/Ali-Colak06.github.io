@@ -2,6 +2,16 @@
 
 ## 1. Document status
 
+### Owner-approved contrast correction — 2026-11-22
+
+Use the existing secondary text token for desktop footer text and Education
+dates. In light theme this changes #8B8E93 to #6B6E73 on #FBFAF9, improving
+normal-text contrast from 3.15:1 to 4.91:1. The owner reviewed the before/after
+preview and approved the darker option. Dark theme remains #A4A9B1 and mobile
+already uses the secondary token. This supersedes earlier muted-footer/date
+reference values and their pending contrast concern; no new palette is added.
+This correction alone is not a claim of complete WCAG conformance.
+
 ### Owner refinements — 2026-09-29
 
 - Keep the Navbar visible while scrolling: sticky at the viewport top, with an

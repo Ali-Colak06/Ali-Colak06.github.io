@@ -531,8 +531,13 @@ Use this file only for product definition and scope.
 
 ## 15. Status
 
-**Project phase:** pre-implementation specification and design.
+**Project phase — 2026-11-22:** V0 implemented and deployed.
 
-The technical architecture has been planned, the V0 content structure is defined, and the current visual direction is being developed separately.
+The EN/TR public site is on GitHub Pages, Studio is hosted by Sanity, and
+published content automatically rebuilds the site. The owner approved the
+temporary profile placeholder and deferred the high-school education entry
+(see CONTENT.md). Implementation and deployment records are in IMPLEMENTATION_PLAN.md.
 
-Implementation should begin only after the source-of-truth documentation is sufficiently complete to guide the coding agent without requiring it to invent product or design decisions.
+This status does not imply complete WCAG conformance or authorization to expand
+V0. Unresolved visual decisions and deferred product features remain subject to
+the source-of-truth documents and owner approval.

@@ -1,12 +1,12 @@
-# Ali Çolak Portfolio — teknik altyapı
+# Ali Çolak Portfolio
 
-Bu repository, teknik altyapı ve **Aşama 3 içerik bağlantısı** çalışmalarını içerir.
+Bu repository, yayımlanmış V0 portfolyo sitesini ve bağımsız Sanity Studio'yu içerir.
 Altı Astro sayfası yayımlanmış Sanity içeriğini ortak Navbar/footer ve çalışan
 açık/koyu tema ile gösterir. Home/About/Contact bölümlerinin onaylı mobil ve
 masaüstü düzenleri, geçici profil placeholder'ı ve dil seçilebilir 404 uygulandı. Son erişilebilirlik
-kontrolleri açık kalır. Public site GitHub Pages'te, Studio Sanity hosting'de
-yayındadır. Sanity Publish → otomatik GitHub Pages yayını doğrulanmıştır.
-Sıradaki milestone M6 son uçtan uca kontroller ve teslimdir.
+kontrollerinin teknik teslim turu tamamlandı; sonuçlar ve sınırlar planda kayıtlıdır.
+Public site GitHub Pages'te, Studio Sanity hosting'de yayındadır. Sanity Publish
+→ otomatik GitHub Pages yayını ve onaylı kontrast düzeltmesi doğrulanmıştır.
 
 Site: [ali-colak06.github.io](https://ali-colak06.github.io/)
 Repository: [Ali-Colak06.github.io](https://github.com/Ali-Colak06/Ali-Colak06.github.io)
@@ -200,16 +200,18 @@ scripts/           Build çıktısı kontrolü
 Son kontrol sonuçları ve kalan bağımlılık bulguları için
 [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) içindeki doğrulama kaydına bakın.
 
-## Sonraki aşama
+## Güncel teslim durumu
 
 Gerçek Sanity içerikleri ve ortak layout, Navbar, footer, tema davranışı hazırdır.
 Home/About/Contact bölüm tasarımları ve global 404 uygulanmıştır. Kullanıcı
 yayın hazırlığına geçilmesini istedi. Yayın yol haritasının M1 repository
 hazırlığı, M2 workflow'u ve M3 ilk GitHub Pages yayını tamamlandı.
-M4 Sanity Studio ve M5 Publish webhook'u da tamamlandı; sıradaki iş M6 son
-uçtan uca kontroller ve teslimdir.
+M4 Studio, M5 webhook ve M6 son teknik kontroller tamamlandı. Son canlı kontrast
+kontrolü yayın sonrasında kayda alınır. Bu teslim tam WCAG sertifikasyonu değildir.
 Hero ve About'ta masaüstünde 320px, mobilde 240px kare placeholder gösterilir.
-Son erişilebilirlik/kontrast kabulü ayrıca açık kalır.
+Klavye, temel semantik yapı, reduced motion, JavaScript/storage kapalı davranışı
+ve onaylı metin kontrastları kontrol edildi. Daha geniş yardımcı teknoloji ve
+tarayıcı kapsamı otomatik olarak tamamlanmış sayılmaz.
 
 Navbar 1024 px altında iki satır, üzerinde tek satırdır. Ortalanmış site en fazla
 1240 px genişliğindedir. Bölüm düzenleri de aynı geçişi kullanır: Currently
@@ -318,7 +320,7 @@ sıfırlayabilir. Studio deploy'u webhook'u değiştirmez.
 - Hedef, mevcut `deploy-pages.yml` workflow'unun dispatch endpoint'idir.
   Yeni workflow, backend veya bağımlılık eklenmez.
 
-İlk bağlantıyı tamamlamak için:
+Yeniden kurulum veya token yenileme için (ilk bağlantı tamamlandı):
 
 1. GitHub Settings → Developer settings → Personal access tokens →
    **Fine-grained tokens** altında yeni token oluştur. Resource owner:
@@ -334,8 +336,34 @@ sıfırlayabilir. Studio deploy'u webhook'u değiştirmez.
 3. Webhook'u etkinleştirip kaydet. Proje secret değeri içeren hook paylaşım
    bağlantısı/export'u üretme. Token süresi dolduğunda aynı başlığı yeni token'la
    güncelle; otomatik yayın çalışmazsa manuel workflow yedek yoludur.
-4. Bildirim sonrası webhook ayarları secret değerini göstermeden kontrol edilir;
-   ardından onaylı bir Publish olayıyla Sanity attempt ve GitHub run eşleştirilir.
+4. Webhook ayarlarını secret değerini göstermeden kontrol et; ardından onaylı
+   bir Publish olayıyla Sanity attempt ve GitHub run sonucunu eşleştir.
+
+## Günlük kullanım ve sorun giderme
+
+- **İçerik:** Studio'ya Google hesabınla gir, belgeyi düzenle ve Publish yap.
+  Taslağı kaydetmek yayını değiştirmez. Actions'ta build/deploy tamamlanınca
+  canlı sayfayı yenile. Kalıcı onaylı metin değişikliklerini CONTENT.md'ye de kaydet.
+- **Kod/UI:** yerelde ilgili kontrolleri çalıştır, commit/push yap; main push'u
+  Pages workflow'unu tetikler. Sabit UI etiketleri src/i18n/ui.ts içindedir.
+- **Studio şeması/yapılandırması:** studio/ altında check/test sonrası
+  `npm run deploy` çalıştır. İçerik Publish'i için bu komut gerekmez.
+- **Publish sonrası güncellenmiyor:** Sanity API → Webhooks → ilgili hook'un
+  attempt kaydını, ardından GitHub Actions sonucunu incele. HTTP 401/403/404
+  durumunda token süresini, repository/Actions yetkisini ve hedef URL'yi kontrol
+  et. Token'ı yalnızca uzaktaki Authorization başlığında yenile.
+- **Build başarısız:** GitHub log'undaki ilk hatayı düzelt. Zorunlu belge/çeviri
+  eksikse Studio'da tamamla ve Publish yap; fallback içerik ekleme. Başarısız build
+  deployment işine geçmez. Gerekirse Actions → Run workflow → main ile yeniden dene.
+- **Yerel preview eski içerik gösteriyor:** yeniden `npm run build` al. Dev
+  sunucusunda sayfayı yenile. Canlı yayında workflow tamamlandıktan sonra gerekirse
+  önbelleksiz yenileme yap.
+
+Geleceğe kalanlar: gerçek profil fotoğrafına dönüş (şimdilik owner-approved
+placeholder), ertelenen lise kaydı, daha geniş erişilebilirlik/tarayıcı incelemesi
+ve Sanity CLI zincirindeki 13 moderate bulgunun üst paket düzeltmesi geldiğinde
+yeniden değerlendirilmesi. High/critical bulgu son taramada yoktu. Bunlar yeni
+özellik veya otomatik paket yükseltme yetkisi değildir.
 
 GitHub'ın gerekli token yetkisi:
 [workflow dispatch API](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event).
