@@ -9,7 +9,9 @@ are complete. Validation passed; the remaining moderate CLI limitation is record
 below. The owner subsequently authorized deployment-roadmap M2 (Pages workflow
 preparation); local implementation and validation are complete, ready for review.
 The owner authorized M3 GitHub connection and first publication; implementation
-and live verification are complete. Next milestone: M4 hosted Sanity Studio.
+and live verification are complete. M4 hosted Sanity Studio was subsequently
+authorized and completed, including owner confirmation of all four documents
+and existing content after Google login. Next milestone: M5 publish webhook.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -119,6 +121,40 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 - Required content access must throw on missing content; no hidden EN fallback.
 
 ## Validation record
+
+### Deployment-roadmap M4 — 2026-11-22 (complete)
+
+- Owner completed Sanity CLI Google login; project administrator access verified.
+  Authentication is managed by the CLI outside the repository; no token is copied
+  into source, Markdown, build input or browser automation.
+- Studio deployed at https://ali-colak-portfolio.sanity.studio/ using the existing
+  project n3mwz4q6 and public production dataset. No new dataset or content write.
+- Added `studio/package.json` deploy script. CLI config records studioHost
+  ali-colak-portfolio and public deployment appId nfpnpz95u0px82sfn3bmjhq7.
+  deployment.autoUpdates is false, preserving tested manual deployment. The
+  deprecated --no-auto-updates flag was replaced with this supported config.
+- Studio type check, five real-validator tests and real-project build passed.
+  Deploy created hostname, generated manifest, deployed 1/1 workspace schemas
+  and uploaded Studio successfully. `sanity schemas list` confirmed
+  _.schemas.portfolio / portfolio / production / n3mwz4q6.
+- Final dry-run with saved CLI config reports action update, canDeploy true,
+  the same hosted URL, isAutoUpdating false and no warnings. No second remote
+  app created. No dependency/lockfile/schema/content changes were needed.
+- Auth providers endpoint returned HTTP 200 with the exact hosted origin in
+  Access-Control-Allow-Origin and Access-Control-Allow-Credentials true. Sanity
+  hosting recognizes this origin without a manually added wildcard CORS entry;
+  existing localhost origins retained.
+- Owner opened hosted Studio, signed in with Google, and explicitly confirmed
+  Site Settings, Home, About and Contact plus previous content are visible.
+- Headless authentication-shell check is supplementary: the Sanity login
+  service's intake/signals script can return HTTP 403 under automation. This
+  is not claimed as an entirely error-free external login network session;
+  actual authenticated editor acceptance is based on the owner's confirmation.
+- README documents the hosted URL, Google login and `npm run deploy` procedure.
+  Studio remains separate from the public Astro site. No workflow, webhook,
+  live content mutation or auth-preview feature added in M4.
+
+Changed files: studio/sanity.cli.ts, studio/package.json, README.md and this plan.
 
 ### Deployment-roadmap M3 — 2026-11-22 (complete)
 
@@ -466,8 +502,8 @@ Recheck when upgrading Sanity, before the later deployment milestone.
 Start instructions, configuration names and folder responsibilities are in
 README.md. Deployment-roadmap M1 preparation and the authorized dependency
 remediation are complete. M2 Pages workflow is now locally implemented and
-verified. M3 GitHub connection and first publication are complete. Next: M4 hosted
-Sanity Studio, retaining the
+verified. M3 GitHub publication and M4 hosted Sanity Studio are complete. Next:
+M5 Sanity publish webhook, retaining the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
 The owner previously confirmed the 404 works. Whole-site accessibility/contrast

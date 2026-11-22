@@ -4,11 +4,13 @@ Bu repository, teknik altyapı ve **Aşama 3 içerik bağlantısı** çalışmal
 Altı Astro sayfası yayımlanmış Sanity içeriğini ortak Navbar/footer ve çalışan
 açık/koyu tema ile gösterir. Home/About/Contact bölümlerinin onaylı mobil ve
 masaüstü düzenleri, geçici profil placeholder'ı ve dil seçilebilir 404 uygulandı. Son erişilebilirlik
-kontrolleri açık kalır. Public site GitHub Pages'te yayındadır; Studio yayını ve
-Sanity webhook bağlantısı sonraki milestone'lardır.
+kontrolleri açık kalır. Public site GitHub Pages'te, Studio Sanity hosting'de
+yayındadır. Sıradaki milestone Sanity webhook bağlantısıdır.
 
 Site: [ali-colak06.github.io](https://ali-colak06.github.io/)
 Repository: [Ali-Colak06.github.io](https://github.com/Ali-Colak06/Ali-Colak06.github.io)
+
+Studio: [ali-colak-portfolio.sanity.studio](https://ali-colak-portfolio.sanity.studio/)
 Durum ve karar kapıları için [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 ## Gereksinimler ve kurulum
@@ -87,7 +89,26 @@ Gerçek projeye bağlanılacağı zaman `studio/.env.example`, `studio/.env` ola
 kopyalanıp `SANITY_STUDIO_PROJECT_ID` gerçek, onaylı proje kimliğiyle doldurulur.
 Ardından Studio dizininde `npm run dev` veya `npm run build` kullanılabilir.
 Bu normal komutlar, kimlik yoksa açık hata verir. Dataset sabit `production`'dır.
-Studio henüz yayımlanmamıştır.
+Studio 22 Kasım 2026'da [ali-colak-portfolio.sanity.studio](https://ali-colak-portfolio.sanity.studio/)
+adresinde yayımlandı. Mevcut Google hesabınla giriş yapabilirsin; dört belge ve
+önceki içeriklerin göründüğü kullanıcı tarafından doğrulandı.
+
+Şema veya Studio yapılandırması değiştiğinde manuel yeniden yayın:
+
+```sh
+cd studio
+npx --no-install sanity login --provider google
+npm run check
+npm test
+npm run deploy
+```
+
+CLI oturumu zaten açıksa login adımını atlayabilirsin. `npm run deploy` gerçek
+proje build'ini alır, şemayı ve Studio'yu yayımlar. CLI yapılandırmasında hostname
+ve public appId kayıtlıdır; sonraki deploy aynı Studio'yu günceller. Otomatik
+Studio sürüm güncellemeleri kapalıdır (`deployment.autoUpdates: false`); paket
+güncellemeleri test edilip manuel deploy edilir. `build:scaffold` çıktısını deploy
+etme. İçerikte Publish yapmak Studio deploy'u gerektirmez.
 
 23 Eylül 2026: Kullanıcının oluşturduğu gerçek Sanity projesi kök `.env` ve
 `studio/.env` dosyalarına bağlandı. `production` dataset'ine tokensız, yayımlanmış
@@ -184,7 +205,7 @@ Gerçek Sanity içerikleri ve ortak layout, Navbar, footer, tema davranışı ha
 Home/About/Contact bölüm tasarımları ve global 404 uygulanmıştır. Kullanıcı
 yayın hazırlığına geçilmesini istedi. Yayın yol haritasının M1 repository
 hazırlığı, M2 workflow'u ve M3 ilk GitHub Pages yayını tamamlandı.
-Sıradaki iş M4 Sanity Studio yayınıdır.
+M4 Sanity Studio yayını da tamamlandı; sıradaki iş M5 Publish webhook'udur.
 Hero ve About'ta masaüstünde 320px, mobilde 240px kare placeholder gösterilir.
 Son erişilebilirlik/kontrast kabulü ayrıca açık kalır.
 
