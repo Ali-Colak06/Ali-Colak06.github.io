@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileImage from '../components/global/ProfileImage.astro';
+import { requireLocale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import { localize } from '../i18n/localize';
+import { routeFor } from '../i18n/routes';
+import { getSiteContent } from '../lib/sanity/content';
+
+const locale = requireLocale(Astro.currentLocale);
+const title = ui[locale].nav.home;
+const copy = ui[locale];
+const { siteSettings, homePage } = await getSiteContent();
+---
+<BaseLayout locale={locale} title={title} page="home" name={siteSettings.name}>
+  <section class="page-section hero" aria-labelledby="hero-heading">
+    <div class="portrait-layout">
+    <div class="hero-copy portrait-heading">
+      <h1 id="hero-heading">{copy.greeting(siteSettings.name)}</h1>
+      <p class="professional-title">{localize(siteSettings.professionalTitle, locale, 'siteSettings.professionalTitle')}</p>
+    </div>
+    <ProfileImage />
+    <div class="hero-copy portrait-body">
+      <p class="intro">{localize(homePage.heroDescription, locale, 'homePage.heroDescription')}</p>
+      <a class="cta cta-primary" href={routeFor('about', locale)}>{copy.aboutCta}</a>
+    </div>
+    </div>
+  </section>
+  <section class="page-section currently-section" aria-labelledby="currently">
+    <h2 class="section-label" id="currently">{copy.currently.heading}</h2>
+    <dl class="currently-list">
+      {(['studying', 'learning', 'workingOn'] as const).map((field) => (
+        <div class="currently-item">
+          <dt>{copy.currently[field]}</dt>
+          <dd>{localize(homePage.currently[field], locale, `homePage.currently.${field}`)}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+  <section class="page-section contact-cta-section" aria-labelledby="contact-cta">
+    <div class="contact-cta-copy">
+      <h2 id="contact-cta">{copy.contactCta.heading}</h2>
+      <p>{localize(homePage.contactCtaDescription, locale, 'homePage.contactCtaDescription')}</p>
+      <a class="cta cta-primary" href={routeFor('contact', locale)}>{copy.contactCta.button}</a>
+    </div>
+  </section>
+</BaseLayout>

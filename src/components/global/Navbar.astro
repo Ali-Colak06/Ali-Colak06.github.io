@@ -1,0 +1,22 @@
+---
+import type { Locale } from '../../i18n/config';
+import { routeFor, type Page } from '../../i18n/routes';
+import { ui } from '../../i18n/ui';
+import ThemeToggle from './ThemeToggle.astro';
+interface Props { locale: Locale; page: Page; name: string }
+const { locale, page, name } = Astro.props;
+---
+<header class="site-header">
+  <a class="site-name" href={routeFor('home', locale)}>{name}</a>
+  <nav class="site-nav" aria-label={ui[locale].navigation}>
+    {(['home', 'about', 'contact'] as const).map((item) => (
+      <a href={routeFor(item, locale)} aria-current={item === page ? 'page' : undefined}>{ui[locale].nav[item]}</a>
+    ))}
+  </nav>
+  <div class="site-controls" role="group" aria-label="Language / Dil">
+    <a class="control" href={routeFor(page, 'en')} hreflang="en" aria-label="English" aria-current={locale === 'en' ? 'true' : undefined}>EN</a>
+    <span class="language-separator" aria-hidden="true">/</span>
+    <a class="control" href={routeFor(page, 'tr')} hreflang="tr" aria-label="Türkçe" aria-current={locale === 'tr' ? 'true' : undefined}>TR</a>
+    <ThemeToggle locale={locale} />
+  </div>
+</header>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ui } from '../i18n/ui';
+import ThemeToggle from '../components/global/ThemeToggle.astro';
+import { getSiteContent } from '../lib/sanity/content';
+const { siteSettings } = await getSiteContent();
+---
+<BaseLayout locale="en" title={ui.en.notFound.heading} name={siteSettings.name} notFound>
+  <header slot="header" class="site-header not-found-header">
+    <a class="site-name" href="/" data-home-link>{siteSettings.name}</a>
+    <div class="site-controls">
+      <div class="error-language" role="group" aria-label="Language / Dil" hidden>
+        <button class="control" type="button" data-locale="en" aria-label="English" aria-pressed="true">EN</button>
+        <span class="language-separator" aria-hidden="true">/</span>
+        <button class="control" type="button" data-locale="tr" aria-label="Türkçe" aria-pressed="false">TR</button>
+      </div>
+      <ThemeToggle locale="en" />
+    </div>
+  </header>
+  <section class="error-content" aria-labelledby="error-heading">
+    <h1 id="error-heading">{ui.en.notFound.heading}</h1>
+    <p id="error-description">{ui.en.notFound.description}</p>
+    <a class="cta cta-primary" href="/" data-home-link id="error-home">{ui.en.notFound.cta}</a>
+  </section>
+<script>
+  import { ui } from '../i18n/ui';
+  import { routeFor } from '../i18n/routes';
+  const group = document.querySelector<HTMLElement>('.error-language');
+  if (group) {
+    group.hidden = false;
+    group.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('button[data-locale]');
+      const locale = button?.dataset.locale;
+      if (locale !== 'en' && locale !== 'tr') return;
+      const copy = ui[locale];
+      document.documentElement.lang = locale;
+      document.title = copy.notFound.heading;
+      document.querySelector('#error-heading')!.textContent = copy.notFound.heading;
+      document.querySelector('#error-description')!.textContent = copy.notFound.description;
+      document.querySelector('#error-home')!.textContent = copy.notFound.cta;
+      document.querySelectorAll<HTMLAnchorElement>('[data-home-link]').forEach(link => link.href = routeFor('home', locale));
+      group.querySelectorAll('button').forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+      const theme = document.querySelector<HTMLElement>('.theme-toggle')!;
+      theme.dataset.darkLabel = copy.theme.dark;
+      theme.dataset.lightLabel = copy.theme.light;
+      document.dispatchEvent(new Event('portfolio:locale-change'));
+    });
+  }
+</script>
+</BaseLayout>

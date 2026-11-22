@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { requireLocale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import { localize } from '../i18n/localize';
+import { getSiteContent } from '../lib/sanity/content';
+
+const locale = requireLocale(Astro.currentLocale);
+const title = ui[locale].nav.contact;
+const { siteSettings, contactPage } = await getSiteContent();
+---
+<BaseLayout locale={locale} title={title} page="contact" name={siteSettings.name}>
+  <section class="page-section contact-section" aria-labelledby="contact-heading">
+    <div class="intro-copy">
+      <h1 class="page-heading" id="contact-heading">{title}</h1>
+      <p class="intro">{localize(contactPage.description, locale, 'contactPage.description')}</p>
+      <dl class="contact-list">
+        <div class="contact-row">
+          <dt>{ui[locale].contact.email}</dt>
+          <dd><a href={`mailto:${siteSettings.email}`}>{siteSettings.email}</a></dd>
+        </div>
+        <div class="contact-row">
+          <dt>{ui[locale].contact.github}</dt>
+          <dd><a href={siteSettings.githubUrl}>{siteSettings.githubUrl}</a></dd>
+        </div>
+        <div class="contact-row">
+          <dt>{ui[locale].contact.linkedin}</dt>
+          <dd><a href={siteSettings.linkedinUrl}>{siteSettings.linkedinUrl}</a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</BaseLayout>

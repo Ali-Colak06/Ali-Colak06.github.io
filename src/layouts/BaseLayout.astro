@@ -1,0 +1,46 @@
+---
+import type { Locale } from '../i18n/config';
+import type { Page } from '../i18n/routes';
+import Navbar from '../components/global/Navbar.astro';
+import Footer from '../components/global/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  page?: Page;
+  name?: string;
+  notFound?: boolean;
+}
+
+const { locale, title, page, name, notFound = false } = Astro.props;
+const shell = (page !== undefined || notFound) && name !== undefined;
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {shell && <>
+      <script is:inline>
+        (() => {
+          let preference;
+          try { preference = localStorage.getItem('portfolio-theme'); } catch {}
+          document.documentElement.dataset.theme = preference === 'dark' ||
+            (preference !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        })();
+      </script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    </>}
+  </head>
+  <body class:list={{ 'site-page': shell, 'not-found-page': notFound }}>
+    {shell ? <div class="site-shell">
+      <slot name="header">{page && <Navbar locale={locale} page={page} name={name!} />}</slot>
+      <main class="site-content"><slot /></main>
+      <Footer locale={locale} name={name!} />
+    </div> : <main><slot /></main>}
+  </body>
+</html>

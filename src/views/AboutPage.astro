@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileImage from '../components/global/ProfileImage.astro';
+import { requireLocale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import { localize } from '../i18n/localize';
+import { getSiteContent } from '../lib/sanity/content';
+
+const locale = requireLocale(Astro.currentLocale);
+const title = ui[locale].nav.about;
+const { aboutPage, siteSettings } = await getSiteContent();
+---
+<BaseLayout locale={locale} title={title} page="about" name={siteSettings.name}>
+  <section class="page-section about-intro" aria-labelledby="about-heading">
+    <div class="portrait-layout">
+    <div class="intro-copy portrait-heading">
+      <h1 class="page-heading" id="about-heading">{title}</h1>
+    </div>
+    <ProfileImage />
+    <div class="intro-copy portrait-body">
+      <p class="intro">{localize(aboutPage.introduction, locale, 'aboutPage.introduction')}</p>
+    </div>
+    </div>
+  </section>
+  <section class="page-section education-section" aria-labelledby="education">
+    <h2 class="section-label" id="education">{ui[locale].education}</h2>
+    <ul class="education-list" role="list">
+      {aboutPage.education.map((entry, index) => (
+        <li class="education-entry">
+          <div>
+            <h3>{localize(entry.institution, locale, `aboutPage.education[${index}].institution`)}</h3>
+            <p class="education-program">{localize(entry.program, locale, `aboutPage.education[${index}].program`)}</p>
+          </div>
+          <p class="education-dates">{entry.startYear} — {entry.endYear ?? ui[locale].present}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
