@@ -254,7 +254,7 @@ Astro `site` ayarı bu adresi kullanır; alt dizin `base` ayarı yoktur.
 - `main` push'u ve manuel `workflow_dispatch` aynı workflow'u çalıştırır.
   Başka bir branch üzerinden manuel çalıştırılırsa build/deploy atlanır.
 - Node `.nvmrc` üzerinden seçilir; npm cache anahtarı kök lockfile'a bağlıdır.
-- Build işi `npm ci`, tür kontrolü, 12 test, yayımlanmış Sanity içeriğiyle
+- Build işi `npm ci`, tür kontrolü, 15 test, yayımlanmış Sanity içeriğiyle
   build ve route/yerel dosya bağlantısı kontrollerini sırayla çalıştırır.
 - Sadece `dist/` Pages artifact'i olarak yüklenir. Studio ayrıca deploy edilir.
 - Deployment işi build'e bağımlıdır. Build başarısızsa artifact yayımlanmaz.
@@ -285,9 +285,54 @@ Gerçek fotoğraf adresi `/images/profile.jpg` HTTP 404 döndürüyor.
 Doğrulanan çalışmalar:
 [ilk push](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021724306),
 [manuel yayın](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021885669).
-Sanity Publish henüz otomatik build tetiklemez. Webhook kurulana kadar içerik
+Sanity Publish henüz otomatik build tetiklemez. Webhook kimlik bilgisi eklenip
+etkinleştirilene kadar içerik
 yayımladıktan sonra Actions → Deploy portfolio to GitHub Pages → Run workflow
 → main üzerinden yeniden yayın başlatılabilir.
+
+## Sanity Publish webhook'u (M5 — kimlik bilgisi bekleniyor)
+
+Sanity'de `Portfolio - GitHub Pages rebuild` webhook'u oluşturuldu
+(ID `6v5diYv8bbiDBWks`). Kullanıcı tarafından devre dışı bırakılmış durumdadır;
+token eklenip etkinleştirilmeden otomatik yayın çalışmaz.
+
+Kaynak yapılandırma `studio/webhooks/github-pages.json` içindedir; token içermez.
+Bu dosya ilk kurulum için devre dışı bir şablondur. Yapılandırılmış canlı hook'un
+üzerine yeniden uygulama; uzak Authorization başlığını veya etkinlik durumunu
+sıfırlayabilir. Studio deploy'u webhook'u değiştirmez.
+
+- Dataset `production`, olaylar create/update/delete.
+- `before()` / `after()` ile dört V0 singleton'ın yayımlanmış değişiklikleri
+  kapsanır; silme/unpublish öncesindeki belge de dikkate alınır.
+- Taslaklar, release sürümleri, farklı kimlikteki kopyalar ve ilgisiz belge
+  tipleri filtrelenir. Ek olarak includeDrafts/includeAllVersions kapalıdır.
+- Payload sadece `{"ref":"main"}`; editorial içerik GitHub'a gönderilmez.
+- Hedef, mevcut `deploy-pages.yml` workflow'unun dispatch endpoint'idir.
+  Yeni workflow, backend veya bağımlılık eklenmez.
+
+İlk bağlantıyı tamamlamak için:
+
+1. GitHub Settings → Developer settings → Personal access tokens →
+   **Fine-grained tokens** altında yeni token oluştur. Resource owner:
+   `Ali-Colak06`; Repository access: **Only select repositories** →
+   `Ali-Colak06.github.io`; Repository permissions: **Actions: Read and write**.
+   Otomatik Metadata read dışında başka yetki ekleme. Örneğin 90 günlük son
+   kullanım tarihi seç ve token'ı yalnızca Sanity'de sakla.
+2. [Sanity proje API ayarlarında](https://www.sanity.io/manage/project/n3mwz4q6/api)
+   yukarıdaki webhook'u düzenle. HTTP headers'a `Authorization` anahtarıyla
+   `Bearer <oluşturduğun token>` değerini ekle; mevcut başlıkları koru. Bu değeri
+   sohbete, Markdown'a veya `.env` dosyasına yazma. İmza için olan Secret alanı
+   GitHub Authorization başlığının yerine geçmez.
+3. Webhook'u etkinleştirip kaydet. Proje secret değeri içeren hook paylaşım
+   bağlantısı/export'u üretme. Token süresi dolduğunda aynı başlığı yeni token'la
+   güncelle; otomatik yayın çalışmazsa manuel workflow yedek yoludur.
+4. Bildirim sonrası webhook ayarları secret değerini göstermeden kontrol edilir;
+   ardından onaylı bir Publish olayıyla Sanity attempt ve GitHub run eşleştirilir.
+
+GitHub'ın gerekli token yetkisi:
+[workflow dispatch API](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event).
+Filtre ve başlık yapılandırması:
+[Sanity Webhooks API](https://www.sanity.io/docs/http-reference/webhooks).
 
 Başvuru: [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages),
 [Astro GitHub Pages](https://docs.astro.build/en/guides/deploy/github/).

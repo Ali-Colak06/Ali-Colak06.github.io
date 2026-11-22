@@ -11,7 +11,10 @@ preparation); local implementation and validation are complete, ready for review
 The owner authorized M3 GitHub connection and first publication; implementation
 and live verification are complete. M4 hosted Sanity Studio was subsequently
 authorized and completed, including owner confirmation of all four documents
-and existing content after Google login. Next milestone: M5 publish webhook.
+and existing content after Google login. The owner approved the live site and
+authorized M5 publish webhook. Configuration and filter tests are ready; a
+repository-scoped GitHub credential must be added remotely by the owner before
+activation and real-delivery verification. M5 is not complete yet.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -121,6 +124,31 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 - Required content access must throw on missing content; no hidden EN fallback.
 
 ## Validation record
+
+### Deployment-roadmap M5 — 2026-11-22 (credential pending)
+
+- Confirmed existing workflow_dispatch endpoint; no workflow change needed.
+- Created document webhook `Portfolio - GitHub Pages rebuild`, ID
+  6v5diYv8bbiDBWks, under project n3mwz4q6. Sanity API accepted the filter
+  and projection. isDisabledByUser true; no Authorization header yet.
+- Public, credential-free creation template: studio/webhooks/github-pages.json.
+  Dataset production; POST to the portfolio deploy-pages.yml dispatch endpoint;
+  explicit create/update/delete, includeDrafts/includeAllVersions false.
+- Filter uses before/after to include the four fixed published singleton IDs
+  and types, including deletion/unpublish. Drafts, releases, duplicate IDs and
+  unrelated types do not match. Static GROQ projection sends only ref=main.
+- Three focused tests execute actual GROQ in delta mode (existing groq-js dev
+  dependency); root suite now 15 passing tests. No synthetic CMS content written.
+- Existing broad CLI OAuth credential is not exported/reused for this webhook.
+  Owner must create a fine-grained PAT scoped only to Ali-Colak06.github.io with
+  Actions write (and automatic metadata read) and paste it directly into remote
+  Sanity Authorization header. No secret belongs in the repository or chat.
+- README records exact setup, lifecycle/expiry, manual fallback and the distinction
+  between an Authorization header and a webhook signing secret. The source JSON
+  is a disabled first-creation template, not an updater for credentialed hooks.
+- Pending: credential configuration, activation, masked remote readback and a
+  real delivery/dispatch verification. M6's full content-change end-to-end
+  acceptance remains subsequent work. No automatic-Publish success claimed.
 
 ### Deployment-roadmap M4 — 2026-11-22 (complete)
 
@@ -504,7 +532,8 @@ Start instructions, configuration names and folder responsibilities are in
 README.md. Deployment-roadmap M1 preparation and the authorized dependency
 remediation are complete. M2 Pages workflow is now locally implemented and
 verified. M3 GitHub publication and M4 hosted Sanity Studio are complete. Next:
-M5 Sanity publish webhook, retaining the
+M5 Sanity publish webhook is prepared and awaits the owner's repository-scoped
+credential and remote activation. Retain the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
 The owner previously confirmed the 404 works. Whole-site accessibility/contrast

@@ -1,0 +1,23 @@
+{
+  "type": "document",
+  "name": "Portfolio - GitHub Pages rebuild",
+  "description": "Rebuild main after published V0 singleton changes. Add a repository-scoped Actions-write GitHub token in the remote Authorization header before enabling.",
+  "url": "https://api.github.com/repos/Ali-Colak06/Ali-Colak06.github.io/actions/workflows/deploy-pages.yml/dispatches",
+  "dataset": "production",
+  "apiVersion": "v2026-09-01",
+  "httpMethod": "POST",
+  "includeDrafts": false,
+  "includeAllVersions": false,
+  "isDisabledByUser": true,
+  "headers": {
+    "Accept": "application/vnd.github+json",
+    "Content-Type": "application/json",
+    "X-GitHub-Api-Version": "2026-03-10",
+    "User-Agent": "ali-colak-portfolio-sanity-webhook"
+  },
+  "rule": {
+    "on": ["create", "update", "delete"],
+    "filter": "(before()._id in [\"siteSettings\", \"homePage\", \"aboutPage\", \"contactPage\"] && before()._type in [\"siteSettings\", \"homePage\", \"aboutPage\", \"contactPage\"]) || (after()._id in [\"siteSettings\", \"homePage\", \"aboutPage\", \"contactPage\"] && after()._type in [\"siteSettings\", \"homePage\", \"aboutPage\", \"contactPage\"])",
+    "projection": "{\"ref\": \"main\"}"
+  }
+}
