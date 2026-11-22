@@ -4,7 +4,11 @@ Bu repository, teknik altyapı ve **Aşama 3 içerik bağlantısı** çalışmal
 Altı Astro sayfası yayımlanmış Sanity içeriğini ortak Navbar/footer ve çalışan
 açık/koyu tema ile gösterir. Home/About/Contact bölümlerinin onaylı mobil ve
 masaüstü düzenleri, geçici profil placeholder'ı ve dil seçilebilir 404 uygulandı. Son erişilebilirlik
-kontrolleri ve yayın sonraki aşamalardadır.
+kontrolleri açık kalır. Public site GitHub Pages'te yayındadır; Studio yayını ve
+Sanity webhook bağlantısı sonraki milestone'lardır.
+
+Site: [ali-colak06.github.io](https://ali-colak06.github.io/)
+Repository: [Ali-Colak06.github.io](https://github.com/Ali-Colak06/Ali-Colak06.github.io)
 Durum ve karar kapıları için [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 ## Gereksinimler ve kurulum
@@ -179,7 +183,8 @@ Son kontrol sonuçları ve kalan bağımlılık bulguları için
 Gerçek Sanity içerikleri ve ortak layout, Navbar, footer, tema davranışı hazırdır.
 Home/About/Contact bölüm tasarımları ve global 404 uygulanmıştır. Kullanıcı
 yayın hazırlığına geçilmesini istedi. Yayın yol haritasının M1 repository
-hazırlığı tamamlandı; M2 GitHub Pages workflow'u yerelde hazırlandı.
+hazırlığı, M2 workflow'u ve M3 ilk GitHub Pages yayını tamamlandı.
+Sıradaki iş M4 Sanity Studio yayınıdır.
 Hero ve About'ta masaüstünde 320px, mobilde 240px kare placeholder gösterilir.
 Son erişilebilirlik/kontrast kabulü ayrıca açık kalır.
 
@@ -223,7 +228,7 @@ Workflow: `.github/workflows/deploy-pages.yml`.
 Hedef repository `Ali-Colak06.github.io`, hedef adres
 `https://ali-colak06.github.io/`, yayın branch'i `main`.
 Astro `site` ayarı bu adresi kullanır; alt dizin `base` ayarı yoktur.
-Bu adres henüz yayımlanmış bir sitenin doğrulandığı anlamına gelmez.
+22 Kasım 2026'da ilk push yayını ve manuel yeniden yayın başarıyla doğrulandı.
 
 - `main` push'u ve manuel `workflow_dispatch` aynı workflow'u çalıştırır.
   Başka bir branch üzerinden manuel çalıştırılırsa build/deploy atlanır.
@@ -237,7 +242,7 @@ Bu adres henüz yayımlanmış bir sitenin doğrulandığı anlamına gelmez.
 - Tek concurrency grubu çalışan yayını kesmez; bekleyen eski çalışmanın
   yerine yenisi geçer. Aktif çalışma bitince son bekleyen istek çalışır.
 
-M3'te GitHub üzerinde tamamlanacak kurulum:
+M3'te GitHub üzerinde tamamlanan kurulum (yeniden kurulum için başvuru):
 
 1. Hedef repository'yi oluştur/varsa içeriğini kontrol et ve `main` branch'ini bağla.
 2. Settings → Secrets and variables → Actions → **Variables** altında
@@ -251,9 +256,17 @@ M3'te GitHub üzerinde tamamlanacak kurulum:
    gerekir; `main` default branch olarak kullanılacak.
 
 Sanity webhook'u M5'te bu workflow'un `workflow_dispatch` girişine bağlanacak.
-M2'de GitHub ayarları değiştirilmedi, commit/push veya deployment yapılmadı.
-Yerel doğrulama GitHub runner, OIDC ve Pages yayınını kapsamaz; bunlar M3'te
-ilk canlı çalıştırmada doğrulanacak.
+M2 yalnızca yerel hazırlıktı; M3'te repository oluşturuldu, ilk commit/push,
+GitHub Actions build/deploy, OIDC, HTTPS ve Pages yayını doğrulandı. Canlı sitede
+24 rota/viewport/tema kontrolü, dil geçişi, tema kalıcılığı ve nested 404 geçti.
+Gerçek fotoğraf adresi `/images/profile.jpg` HTTP 404 döndürüyor.
+
+Doğrulanan çalışmalar:
+[ilk push](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021724306),
+[manuel yayın](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021885669).
+Sanity Publish henüz otomatik build tetiklemez. Webhook kurulana kadar içerik
+yayımladıktan sonra Actions → Deploy portfolio to GitHub Pages → Run workflow
+→ main üzerinden yeniden yayın başlatılabilir.
 
 Başvuru: [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages),
 [Astro GitHub Pages](https://docs.astro.build/en/guides/deploy/github/).

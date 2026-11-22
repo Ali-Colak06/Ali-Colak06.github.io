@@ -8,7 +8,8 @@ M1 preparation and the subsequently authorized bounded dependency remediation
 are complete. Validation passed; the remaining moderate CLI limitation is recorded
 below. The owner subsequently authorized deployment-roadmap M2 (Pages workflow
 preparation); local implementation and validation are complete, ready for review.
-The owner authorized M3 GitHub connection and first publication; work is in progress.
+The owner authorized M3 GitHub connection and first publication; implementation
+and live verification are complete. Next milestone: M4 hosted Sanity Studio.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -119,7 +120,39 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 
 ## Validation record
 
-### Deployment-roadmap M3 — 2026-11-22 (in progress)
+### Deployment-roadmap M3 — 2026-11-22 (complete)
+
+- GitHub device authentication completed by the owner; account Ali-Colak06 verified.
+- Created public repository https://github.com/Ali-Colak06/Ali-Colak06.github.io,
+  initial commit 0175b6c, main default branch and origin/main tracking configured.
+- Set public repository Actions variable SANITY_PROJECT_ID to the existing
+  project ID. No token stored in source/docs. GitHub CLI manages authentication.
+- Pages source set to workflow (GitHub Actions), HTTPS enforced at
+  https://ali-colak06.github.io/. github-pages environment custom branch policy
+  permits only main.
+- [Push run 45021724306](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021724306)
+  and [manual dispatch 45021885669](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021885669)
+  both completed successfully: root install, type check, 12 tests, live Sanity
+  build, seven-route/49-reference checker, artifact upload and deployment.
+- Live browser: 24 cases across six routes, widths 390/1240 and light/dark
+  passed. Checked HTTP 200, language metadata, heading/active nav, sticky header,
+  placeholder, equivalent-language links, no overflow, theme switching and
+  persistence. Nested invalid TR URL returned HTTP 404 with initial English;
+  switching to Turkish updated lang and Home target. No page errors/browser CMS
+  requests. Desktop Home/mobile About screenshots visually reviewed.
+- Removed real photo URL /images/profile.jpg returns HTTP 404. Root/Studio
+  env files, generated artifacts and dependency folders remain ignored.
+- Initial GitHub automatic legacy Jekyll run 45021721183 failed before Pages
+  source was switched to Actions; it deployed nothing. The intended Astro push
+  and manual workflows succeeded; no workflow fix was needed.
+- GitHub annotations warn that some official Pages actions target Node 20;
+  GitHub runs them on Node 24. They passed. This is separate from project Node
+  24.14.1 and the previously documented moderate Sanity CLI audit limitation.
+- README and this plan record the live URLs and manual rebuild process.
+  Studio deployment and publish webhooks are not included in M3. Final full-site
+  contrast/accessibility acceptance remains open.
+
+Preparation history:
 
 - First commit scope reviewed: 73 staged source/config/documentation files;
   no environment files, build output, dependency folders or real photo.
@@ -130,9 +163,8 @@ back before Stage 2. No remote repository, commit, push or deployment is include
   directory; archive SHA256 verified against release checksums. No project
   dependency added. GitHub CLI was initially unauthenticated; device login
   requested from the owner. No token or login code is stored in project files.
-- Unauthenticated/noninteractive target lookup returned repository not found;
-  this does not establish absence of a private repository. Verify after login
-  before creating or pushing. Pages settings/publication not yet completed.
+- Initial unauthenticated lookup returned repository not found. After login the
+  target was confirmed absent before creation; no existing repository overwritten.
 
 ### Deployment-roadmap M2 — 2026-11-22
 
@@ -434,7 +466,8 @@ Recheck when upgrading Sanity, before the later deployment milestone.
 Start instructions, configuration names and folder responsibilities are in
 README.md. Deployment-roadmap M1 preparation and the authorized dependency
 remediation are complete. M2 Pages workflow is now locally implemented and
-verified. Next: M3 GitHub connection and first publication, retaining the
+verified. M3 GitHub connection and first publication are complete. Next: M4 hosted
+Sanity Studio, retaining the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
 The owner previously confirmed the 404 works. Whole-site accessibility/contrast
