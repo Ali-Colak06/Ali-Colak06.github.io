@@ -5,7 +5,8 @@ Altı Astro sayfası yayımlanmış Sanity içeriğini ortak Navbar/footer ve ç
 açık/koyu tema ile gösterir. Home/About/Contact bölümlerinin onaylı mobil ve
 masaüstü düzenleri, geçici profil placeholder'ı ve dil seçilebilir 404 uygulandı. Son erişilebilirlik
 kontrolleri açık kalır. Public site GitHub Pages'te, Studio Sanity hosting'de
-yayındadır. Sıradaki milestone Sanity webhook bağlantısıdır.
+yayındadır. Sanity Publish → otomatik GitHub Pages yayını doğrulanmıştır.
+Sıradaki milestone M6 son uçtan uca kontroller ve teslimdir.
 
 Site: [ali-colak06.github.io](https://ali-colak06.github.io/)
 Repository: [Ali-Colak06.github.io](https://github.com/Ali-Colak06/Ali-Colak06.github.io)
@@ -205,7 +206,8 @@ Gerçek Sanity içerikleri ve ortak layout, Navbar, footer, tema davranışı ha
 Home/About/Contact bölüm tasarımları ve global 404 uygulanmıştır. Kullanıcı
 yayın hazırlığına geçilmesini istedi. Yayın yol haritasının M1 repository
 hazırlığı, M2 workflow'u ve M3 ilk GitHub Pages yayını tamamlandı.
-M4 Sanity Studio yayını da tamamlandı; sıradaki iş M5 Publish webhook'udur.
+M4 Sanity Studio ve M5 Publish webhook'u da tamamlandı; sıradaki iş M6 son
+uçtan uca kontroller ve teslimdir.
 Hero ve About'ta masaüstünde 320px, mobilde 240px kare placeholder gösterilir.
 Son erişilebilirlik/kontrast kabulü ayrıca açık kalır.
 
@@ -285,16 +287,22 @@ Gerçek fotoğraf adresi `/images/profile.jpg` HTTP 404 döndürüyor.
 Doğrulanan çalışmalar:
 [ilk push](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021724306),
 [manuel yayın](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45021885669).
-Sanity Publish henüz otomatik build tetiklemez. Webhook kimlik bilgisi eklenip
-etkinleştirilene kadar içerik
-yayımladıktan sonra Actions → Deploy portfolio to GitHub Pages → Run workflow
-→ main üzerinden yeniden yayın başlatılabilir.
+Sanity Publish webhook'u etkin ve gerçek teslim/yayın testi başarılı.
+Manuel yedek yol: içerik yayımladıktan sonra Actions → Deploy portfolio to GitHub
+Pages → Run workflow → main üzerinden yeniden yayın başlatılabilir.
 
-## Sanity Publish webhook'u (M5 — kimlik bilgisi bekleniyor)
+## Sanity Publish webhook'u (M5 — etkin ve doğrulandı)
 
 Sanity'de `Portfolio - GitHub Pages rebuild` webhook'u oluşturuldu
-(ID `6v5diYv8bbiDBWks`). Kullanıcı tarafından devre dışı bırakılmış durumdadır;
-token eklenip etkinleştirilmeden otomatik yayın çalışmaz.
+(ID `6v5diYv8bbiDBWks`). Authorization başlığı ve etkinlik ayarı 22 Kasım 2026'da
+doğrulandı. Secret değeri kaynaklara kaydedilmedi. Kullanıcının İngilizce Hero'ya
+eklediği geçici `Test1` metniyle Publish → webhook HTTP 200 →
+[başarılı workflow](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45025683397)
+→ canlı İngilizce sayfa zinciri doğrulandı. Türkçe sayfa bu testten etkilenmedi.
+Kullanıcı Test1'i kaldırıp yeniden Publish yaptı;
+[geri dönüş yayını](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45025864459)
+da başarılı. Onaylı İngilizce metnin geri geldiği ve Test1'in canlı siteden
+kaldırıldığı doğrulandı.
 
 Kaynak yapılandırma `studio/webhooks/github-pages.json` içindedir; token içermez.
 Bu dosya ilk kurulum için devre dışı bir şablondur. Yapılandırılmış canlı hook'un

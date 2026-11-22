@@ -12,9 +12,12 @@ The owner authorized M3 GitHub connection and first publication; implementation
 and live verification are complete. M4 hosted Sanity Studio was subsequently
 authorized and completed, including owner confirmation of all four documents
 and existing content after Google login. The owner approved the live site and
-authorized M5 publish webhook. Configuration and filter tests are ready; a
-repository-scoped GitHub credential must be added remotely by the owner before
-activation and real-delivery verification. M5 is not complete yet.
+authorized M5 publish webhook. Configuration and filter tests are ready. The
+owner supplied the remote GitHub credential; the header name was corrected and
+the webhook enabled without exposing its value. Actual Publish delivery,
+successful automatic workflow and live English Test1 output are verified; M5
+integration and test-text restoration are verified. M6 final
+end-to-end acceptance is the next milestone.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -125,7 +128,42 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 
 ## Validation record
 
-### Deployment-roadmap M5 — 2026-11-22 (credential pending)
+### Deployment-roadmap M5 — 2026-11-22 (integration verified)
+
+- Owner published a temporary `Test1` addition to the English Hero. No source
+  copy was changed to adopt this test content as permanent editorial text.
+- Webhook attempt atm-3MSnIajYFYlnOQk25OfIBhosJhE at 13:05:55.65 UTC
+  (16:05:55 Istanbul) returned HTTP 200, isFailure false, inProgress false.
+- Corresponding [workflow_dispatch run 45025683397](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45025683397)
+  started 13:05:56 UTC and completed successfully. This was a real Sanity-triggered
+  dispatch, not an agent's manual workflow run.
+- Independent live HTTP read confirmed Test1 in English Home and absent in TR
+  Home. Owner also confirmed the visible update. Thus Publish → webhook →
+  GitHub build/deploy → live HTML is demonstrated.
+- Owner removed Test1 and published again. Webhook attempt
+  atm-3MSnYJx46BPX0BRGnIJZinosWDG returned HTTP 200 and its response identified
+  [run 45025864459](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45025864459),
+  which completed successfully. Both actual attempts' GitHub response run IDs
+  were matched to the corresponding workflow runs. Published English copy matches
+  CONTENT.md; fresh live HTML contains the approved description and no Test1.
+  No agent-authored dataset mutation. No real deletion/unpublish of a
+  required singleton was performed; those behaviors are covered by existing
+  content/filter tests, not claimed as live acceptance here.
+
+Setup history:
+
+- Owner supplied a fine-grained credential directly in Sanity. Readback showed
+  a misspelled Authorizatio header and isDisabledByUser true. Corrected the name
+  and enabled the hook, preserving the credential only in process memory and
+  passing the patch through stdin to the authenticated Sanity CLI. No secret
+  in command arguments, files, tool output, Markdown or Git. Confirmed correct
+  header existence, removal of the typo and isDisabledByUser false.
+- Remote URL, dataset, filter, projection and event flags match the source
+  template. No draft/release flags enabled. Owner asked to perform a reversible
+  whitespace-only publish and restoration to verify real delivery without
+  permanently changing approved copy. No agent-authored dataset mutation.
+
+Preparation history:
 
 - Confirmed existing workflow_dispatch endpoint; no workflow change needed.
 - Created document webhook `Portfolio - GitHub Pages rebuild`, ID
@@ -146,9 +184,8 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 - README records exact setup, lifecycle/expiry, manual fallback and the distinction
   between an Authorization header and a webhook signing secret. The source JSON
   is a disabled first-creation template, not an updater for credentialed hooks.
-- Pending: credential configuration, activation, masked remote readback and a
-  real delivery/dispatch verification. M6's full content-change end-to-end
-  acceptance remains subsequent work. No automatic-Publish success claimed.
+- Real delivery/dispatch verification completed as recorded above. M6's broader
+  end-to-end acceptance remains subsequent work.
 
 ### Deployment-roadmap M4 — 2026-11-22 (complete)
 
@@ -532,8 +569,9 @@ Start instructions, configuration names and folder responsibilities are in
 README.md. Deployment-roadmap M1 preparation and the authorized dependency
 remediation are complete. M2 Pages workflow is now locally implemented and
 verified. M3 GitHub publication and M4 hosted Sanity Studio are complete. Next:
-M5 Sanity publish webhook is prepared and awaits the owner's repository-scoped
-credential and remote activation. Retain the
+M5 Sanity publish webhook is configured, enabled and verified through a real
+published Test1 edit, successful live update and verified restoration. Proceed
+to M6 final end-to-end acceptance. Retain the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
 The owner previously confirmed the 404 works. Whole-site accessibility/contrast
