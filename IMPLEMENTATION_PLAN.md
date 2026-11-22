@@ -146,10 +146,11 @@ back before Stage 2. No remote repository, commit, push or deployment is include
   existing localhost origins retained.
 - Owner opened hosted Studio, signed in with Google, and explicitly confirmed
   Site Settings, Home, About and Contact plus previous content are visible.
-- Headless authentication-shell check is supplementary: the Sanity login
-  service's intake/signals script can return HTTP 403 under automation. This
-  is not claimed as an entirely error-free external login network session;
-  actual authenticated editor acceptance is based on the owner's confirmation.
+- Supplementary headless authentication-shell checks did not pass: the Sanity
+  login service's intake/signals script returned HTTP 403, and another attempt
+  reported `oaiq is not defined`. No authentication-script workaround was added.
+  Actual authenticated editor acceptance is based on the owner's successful
+  Google login and four-document confirmation in their own browser.
 - README documents the hosted URL, Google login and `npm run deploy` procedure.
   Studio remains separate from the public Astro site. No workflow, webhook,
   live content mutation or auth-preview feature added in M4.
