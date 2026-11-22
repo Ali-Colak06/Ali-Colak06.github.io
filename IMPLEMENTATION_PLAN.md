@@ -16,8 +16,9 @@ authorized M5 publish webhook. Configuration and filter tests are ready. The
 owner supplied the remote GitHub credential; the header name was corrected and
 the webhook enabled without exposing its value. Actual Publish delivery,
 successful automatic workflow and live English Test1 output are verified; M5
-integration and test-text restoration are verified. M6 final checks are locally
-complete; the owner-approved contrast correction awaits final live verification.
+integration and test-text restoration are verified. M6 final technical checks,
+owner-approved contrast correction, live publication and handoff are complete.
+The deployment roadmap M1–M6 is closed; no further milestone is implicitly started.
 The owner removed the real photograph and authorized continuing with the existing
 placeholder. No photo restoration is needed for the deployment milestones.
 The roadmap is: M1 preparation → M2 Pages workflow → M3 GitHub/first publication
@@ -113,11 +114,11 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 ### Milestones
 
 1. **Complete:** configure real Sanity content and connect pages to the content access layer. Six unstyled content pages render published EN/TR fields, localized CTA links, contact links and CMS education entries. No new dependencies or client scripts.
-2. **Implemented and verified; ready for owner review:** global shell, navigation, footer and theme behavior. Six content routes share Navbar/Footer, equivalent-language links, active states, 44px controls and the approved palette/font. System theme is used until an explicit choice, which persists across page navigation. 1024px shell transition and 1240px cap are recorded in DESIGN.md. The global 404 stays a scaffold for its own milestone.
+2. **Complete and owner-reviewed:** global shell, navigation, footer and theme behavior. Six routes share Navbar/Footer, equivalent-language links, active states, 44px controls and the approved palette/font. Theme preferences persist. The responsive shell and final checks are recorded in DESIGN.md and M6 below.
 3. **Page sections implemented and verified; temporary portrait placeholder active:** Home Hero/Currently/contact CTA, About introduction/Education and Contact rows follow the approved mobile/desktop references in EN/TR and both themes. Only the published university entry is shown. The shared ProfileImage component renders a square CSS placeholder with the approved responsive placement. The owner removed the real photograph and confirmed placeholder publication on 2026-11-22.
-4. **404 implemented, review ready:** English initial state, EN/TR selection, shared theme, localized document title/lang and Home destinations. Final whole-site visual/responsive/accessibility acceptance remains pending.
-5. Add GitHub Pages deployment and deploy Studio manually to Sanity hosting.
-6. Connect Sanity published-content webhooks to GitHub workflow dispatch.
+4. **Complete and owner-reviewed:** global 404 with English initial state, EN/TR selection, shared theme, localized title/lang and Home destinations. Tested live and without JavaScript.
+5. **Complete:** GitHub Pages public deployment and manually deployed hosted Sanity Studio (M3/M4).
+6. **Complete:** Sanity published-content webhook to workflow_dispatch, real edit/restore verification and final technical handoff (M5/M6).
 
 ## Boundaries
 
@@ -128,7 +129,15 @@ back before Stage 2. No remote repository, commit, push or deployment is include
 
 ## Validation record
 
-### Deployment-roadmap M6 — 2026-11-22 (final publication verification pending)
+### Deployment-roadmap M6 — 2026-11-22 (complete)
+
+- Final source publication [45026696375](https://github.com/Ali-Colak06/Ali-Colak06.github.io/actions/runs/45026696375)
+  for commit 9cebc39 passed build/deploy. Twelve additional live contrast cases
+  passed in EN/TR, light/dark and widths 390/1024/1240. New light footer/date
+  color confirmed on production; dark/mobile retained their expected color.
+- Final closeout is documentation-only; its commit skips CI to avoid rebuilding
+  identical site sources after the verified source deployment. Repository work
+  is handed back for normal content maintenance; no future feature is started.
 
 - Final root check: 29 files, zero errors/warnings/hints; 15 tests passed.
   Studio type check, five real-validator tests and real-project build passed.
@@ -158,13 +167,13 @@ back before Stage 2. No remote repository, commit, push or deployment is include
   pattern scan, not a proof of absence of every possible secret.
 - Studio hosted access was confirmed by the owner in M4; public Pages HTTPS,
   Actions source, main-only environment policy and successful code/manual/publish
-  runs were verified in M3–M5. Real Publish/edit/restore runs are linked above.
+  runs were verified in M3–M5. Real Publish/edit/restore runs are linked in M5 below.
 - Light desktop footer and education-date text measured 3.15:1. Owner reviewed
   before/after preview and approved using existing secondary #6B6E73, 4.91:1
   on #FBFAF9, rather than prior #8B8E93. Only those desktop selectors changed;
   dark/mobile appearance preserved. DESIGN.md records the decision. Twelve
   local regression cases (EN/TR, light/dark, 390/1024/1240) passed and final
-  desktop light About screenshot reviewed. Final live regression is pending.
+  desktop light About screenshot reviewed. Final live regression passed as above.
 - README now contains daily editorial/code/schema workflows, manual recovery,
   token renewal and build-failure troubleshooting. PROJECT_SPEC status updated
   from pre-implementation to deployed V0, preserving owner photo/education exceptions.
@@ -618,9 +627,11 @@ README.md. Deployment-roadmap M1 preparation and the authorized dependency
 remediation are complete. M2 Pages workflow is now locally implemented and
 verified. M3 GitHub publication and M4 hosted Sanity Studio are complete. Next:
 M5 Sanity publish webhook is configured, enabled and verified through a real
-published Test1 edit, successful live update and verified restoration. Proceed
-to the final live verification of the approved M6 contrast correction. Retain the
+published Test1 edit, successful live update and verified restoration. M6 final
+checks and approved contrast correction are complete locally and live. Retain the
 documented moderate CLI limitation. Keep the approved placeholder; do not
 restore the removed photo.
-The owner previously confirmed the 404 works. Whole-site accessibility/contrast
-acceptance remains open, and unresolved design choices must not be invented.
+The owner confirmed the public site and Studio work. Technical delivery is
+complete. The specific text-contrast concern was corrected with owner approval;
+this does not certify complete WCAG conformance. Broader assistive-technology
+coverage and unresolved future design choices remain separate, explicit work.

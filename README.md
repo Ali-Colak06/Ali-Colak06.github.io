@@ -206,8 +206,9 @@ Gerçek Sanity içerikleri ve ortak layout, Navbar, footer, tema davranışı ha
 Home/About/Contact bölüm tasarımları ve global 404 uygulanmıştır. Kullanıcı
 yayın hazırlığına geçilmesini istedi. Yayın yol haritasının M1 repository
 hazırlığı, M2 workflow'u ve M3 ilk GitHub Pages yayını tamamlandı.
-M4 Studio, M5 webhook ve M6 son teknik kontroller tamamlandı. Son canlı kontrast
-kontrolü yayın sonrasında kayda alınır. Bu teslim tam WCAG sertifikasyonu değildir.
+M4 Studio, M5 webhook ve M6 son teknik kontroller tamamlandı. Onaylı kontrast
+düzeltmesi yayımlandı ve canlı sitede de doğrulandı. Bu teslim tam WCAG
+sertifikasyonu değildir.
 Hero ve About'ta masaüstünde 320px, mobilde 240px kare placeholder gösterilir.
 Klavye, temel semantik yapı, reduced motion, JavaScript/storage kapalı davranışı
 ve onaylı metin kontrastları kontrol edildi. Daha geniş yardımcı teknoloji ve
